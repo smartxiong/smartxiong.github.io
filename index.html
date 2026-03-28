@@ -19,14 +19,14 @@
   
 
   
-    <meta name="author" content="博主名称">
+    <meta name="author" content="雄哥在努力">
   
 
   
 
   
 
-  <title>我的个人博客</title>
+  <title>朋友你好</title>
 
   
 
@@ -50,7 +50,7 @@
 <!-- header container -->
 <header class="header-container">
   
-    <div class="post-image" style="background-image: url(https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=modern%20minimalist%20blog%20header%20with%20abstract%20design&amp;image_size=landscape_16_9)"></div>
+    <div class="post-image" style="background-image: url(https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=modern%20minimalist%20blog%20header%20with%20abstract%20design%20dynamic%20effect&amp;image_size=landscape_16_9)"></div>
   
 
   <!-- navbar -->
@@ -60,7 +60,7 @@
     <div class="navbar-logo">
       <a href="/">
         
-          我的个人博客
+          朋友你好
         
       </a>
     </div>
@@ -90,10 +90,48 @@
   
     <div class="header-content">
       <div class="post-text layout-block layout-padding">
-        <h1 class="title-wrap">我的个人博客</h1>
-        
-          <h2 class="title-sub-wrap">记录生活与技术的点滴</h2>
-        
+        <h1 class="title-wrap">朋友你好</h1>
+        <h2 class="title-sub-wrap" id="typewriter"></h2>
+        <script>
+          // 打字机效果，依次显示三句古诗
+          const poems = [
+            "山重水复疑无路，柳暗花明又一村",
+            "长风破浪会有时，直挂云帆济沧海",
+            "路漫漫其修远兮，吾将上下而求索"
+          ];
+          let poemIndex = 0;
+          let charIndex = 0;
+          let isDeleting = false;
+          const typewriter = document.getElementById('typewriter');
+          
+          function type() {
+            const currentPoem = poems[poemIndex];
+            
+            if (isDeleting) {
+              typewriter.textContent = currentPoem.substring(0, charIndex - 1);
+              charIndex--;
+            } else {
+              typewriter.textContent = currentPoem.substring(0, charIndex + 1);
+              charIndex++;
+            }
+            
+            if (!isDeleting && charIndex === currentPoem.length) {
+              // 暂停一段时间后开始删除
+              setTimeout(() => isDeleting = true, 2000);
+            } else if (isDeleting && charIndex === 0) {
+              // 切换到下一句诗
+              isDeleting = false;
+              poemIndex = (poemIndex + 1) % poems.length;
+            }
+            
+            // 控制打字速度
+            const speed = isDeleting ? 50 : 100;
+            setTimeout(type, speed);
+          }
+          
+          // 开始打字机效果
+          type();
+        </script>
       </div>
     </div>
   
@@ -188,7 +226,7 @@
       
     </div>
      
-    <p>&copy; 2026 <a href="/" target="_blank">博主名称</a></p>
+    <p>&copy; 2026 <a href="/" target="_blank">雄哥在努力</a></p>
 
     
 
